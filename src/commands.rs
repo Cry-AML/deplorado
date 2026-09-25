@@ -225,7 +225,7 @@ async fn handle_list_overview(cache: &CacheManager, json: bool) -> Result<()> {
 
     if json {
         let mut recent_releases = releases.clone();
-        recent_releases.sort_by(|a, b| b.release_date.cmp(&a.release_date));
+        recent_releases.sort_by_key(|b| std::cmp::Reverse(b.release_date));
         recent_releases.truncate(10);
 
         let releases_recent: Vec<ReleaseSummary> = recent_releases
@@ -282,7 +282,7 @@ async fn handle_list_overview(cache: &CacheManager, json: bool) -> Result<()> {
 
     // Show recent releases (up to 10)
     let mut recent_releases = releases.clone();
-    recent_releases.sort_by(|a, b| b.release_date.cmp(&a.release_date));
+    recent_releases.sort_by_key(|b| std::cmp::Reverse(b.release_date));
     recent_releases.truncate(10);
 
     for release in recent_releases.iter() {
@@ -379,7 +379,7 @@ async fn handle_list_releases(cache: &CacheManager, detailed: bool, json: bool) 
 
     // Sort releases by date (newest first)
     let mut sorted_releases = releases;
-    sorted_releases.sort_by(|a, b| b.release_date.cmp(&a.release_date));
+    sorted_releases.sort_by_key(|b| std::cmp::Reverse(b.release_date));
     let current_release_id = sorted_releases.first().map(|r| r.id.clone());
 
     if json {

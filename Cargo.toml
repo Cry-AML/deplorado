@@ -1,13 +1,16 @@
 [package]
-name = "depmap-downloader-rs"
+name = "deplorado"
 version = "0.1.0"
 edition = "2021"
-description = "A Rust-based DepMap data downloader"
-authors = ["DepMap Team"]
+description = "DepLorado — a desperado downloader hunting for gold in DepMap"
+authors = ["DepLorado contributors"]
+repository = "https://github.com/Cry-AML/deplorado"
+readme = "README.md"
+license = "MIT"
 autobins = false
 
 [[bin]]
-name = "depdown"
+name = "deplorado"
 path = "src/main.rs"
 
 [dependencies]

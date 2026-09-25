@@ -1,10 +1,12 @@
-# 🧬 DepMap Downloader
+# 🧬 DepLorado
 
-> ⚡ High-performance Rust tool for downloading DepMap Cancer Dependency Map data
+> ⚡ A desperado downloader hunting for gold in DepMap
+
+A high-performance Rust tool for mining the DepMap Cancer Dependency Map.
 
 [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/rainoffallingstar/depmap-downloader-rs.svg?style=social&label=Star)](https://github.com/rainoffallingstar/depmap-downloader-rs)
+[![GitHub stars](https://img.shields.io/github/stars/Cry-AML/deplorado.svg?style=social&label=Star)](https://github.com/Cry-AML/deplorado)
 
 ## 🎯 Features
 
@@ -25,14 +27,14 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/rainoffallingstar/depmap-downloader-rs.git
-cd depmap-downloader-rs
+git clone https://github.com/Cry-AML/deplorado.git
+cd deplorado
 
 # Build project
 cargo build --release
 
 # Run program
-./target/release/depdown --help
+./target/release/deplorado --help
 ```
 
 ### 🛠️ Installation
@@ -41,7 +43,7 @@ You can run the application in any directory without pre-existing setup:
 
 ```bash
 # Download pre-built binary (when available) or build from source
-./depdown update  # Automatically creates database on first run
+./deplorado update  # Automatically creates database on first run
 ```
 
 The application automatically handles:
@@ -56,75 +58,75 @@ The application automatically handles:
 
 ```bash
 # Update cache (automatically checks if needed)
-./target/release/depdown update
+./target/release/deplorado update
 
 # Force update
-./target/release/depdown update --force
+./target/release/deplorado update --force
 
 # Update specific data types
-./target/release/depdown update --data-type CRISPR --data-type Expression
+./target/release/deplorado update --data-type CRISPR --data-type Expression
 ```
 
 ### 📋 List Data
 
 ```bash
 # View all releases 📦
-./target/release/depdown list releases
+./target/release/deplorado list releases
 
 # View specific data types 🧬
-./target/release/depdown list datasets --data-type CRISPR
+./target/release/deplorado list datasets --data-type CRISPR
 
 # View detailed release files 📁
-./target/release/depdown list files "DepMap Public 23Q4" --detailed
+./target/release/deplorado list files "DepMap Public 23Q4" --detailed
 ```
 
 ### ⬇️ Download Data
 
 ```bash
 # 🆕 Download entire release
-./target/release/depdown download release "DepMap Public 23Q4"
+./target/release/deplorado download release "DepMap Public 23Q4"
 
 # 🆕 Download specific data types
-./target/release/depdown download release "DepMap Public 23Q4" --data-type CRISPR
+./target/release/deplorado download release "DepMap Public 23Q4" --data-type CRISPR
 
 # 🆕 Download specific dataset
-./target/release/depdown download dataset "CRISPR (DepMap Public 25Q3+Score, Chronos)"
+./target/release/deplorado download dataset "CRISPR (DepMap Public 25Q3+Score, Chronos)"
 
 # ⚡ High-speed download (8 workers)
-./target/release/depdown download --workers 8 release "DepMap Public 25Q3"
+./target/release/deplorado download --workers 8 release "DepMap Public 25Q3"
 
 # Skip existing files
-./target/release/depdown download --skip-existing
+./target/release/deplorado download --skip-existing
 
 # Verify file integrity
-./target/release/depdown download --verify-checksum
+./target/release/deplorado download --verify-checksum
 ```
 
 ### 🔍 Search Data
 
 ```bash
 # 🆕 Search genes (supports gene names and Entrez IDs)
-./target/release/depdown search TP53 -g
-./target/release/depdown search 7159 -g --limit 5
+./target/release/deplorado search TP53 -g
+./target/release/deplorado search 7159 -g --limit 5
 
 # 🔍 Search cell lines
-./target/release/depdown search "A549" --cell-line
+./target/release/deplorado search "A549" --cell-line
 
 # 📊 Search datasets
-./target/release/depdown search "CRISPR" --dataset
+./target/release/deplorado search "CRISPR" --dataset
 
 # 🎯 Search all types (default behavior)
-./target/release/depdown search "BRCA1"
+./target/release/deplorado search "BRCA1"
 ```
 
 ### 📈 View Statistics
 
 ```bash
 # Cache statistics
-./target/release/depdown stats
+./target/release/deplorado stats
 
 # Detailed statistics
-./target/release/depdown stats --detailed
+./target/release/deplorado stats --detailed
 ```
 
 ## 💡 Practical Examples
@@ -132,35 +134,35 @@ The application automatically handles:
 ### 🧬 Gene Research
 ```bash
 # Search tumor suppressor gene TP53
-./target/release/depdown search TP53 -g
+./target/release/deplorado search TP53 -g
 
 # Find oncogene MYC
-./target/release/depdown search MYC -g --limit 10
+./target/release/deplorado search MYC -g --limit 10
 
 # Search by Entrez ID
-./target/release/depdown search 672 -g  # BRCA1
+./target/release/deplorado search 672 -g  # BRCA1
 ```
 
 ### 📦 Data Downloads
 ```bash
 # Download CRISPR data only (latest version)
-./target/release/depdown download --skip-existing release "DepMap Public 25Q3" --data-type CRISPR
+./target/release/deplorado download --skip-existing release "DepMap Public 25Q3" --data-type CRISPR
 
 # Download multiple data types
-./target/release/depdown download --workers 8 release "DepMap Public 23Q4" --data-type Expression
-./target/release/depdown download --workers 8 release "DepMap Public 23Q4" --data-type Mutations
+./target/release/deplorado download --workers 8 release "DepMap Public 23Q4" --data-type Expression
+./target/release/deplorado download --workers 8 release "DepMap Public 23Q4" --data-type Mutations
 ```
 
 ### 🔍 Exploratory Research
 ```bash
 # View available releases
-./target/release/depdown list releases
+./target/release/deplorado list releases
 
 # Browse release files
-./target/release/depdown list files "DepMap Public 23Q4" --detailed
+./target/release/deplorado list files "DepMap Public 23Q4" --detailed
 
 # Selective download
-./target/release/depdown download --verify-checksum release "DepMap Public 23Q4"
+./target/release/deplorado download --verify-checksum release "DepMap Public 23Q4"
 ```
 
 ## 📊 Supported Data Types
@@ -197,7 +199,7 @@ The application automatically handles:
 ## 🏗️ Project Structure
 
 ```
-depmap-downloader-rs/
+deplorado/
 ├── 📁 src/                    # Source code
 │   ├── main.rs                # Program entry point
 │   ├── cli.rs                 # CLI definitions
@@ -238,7 +240,7 @@ The application automatically creates databases in new directories:
 ```bash
 # Works in any directory - no setup required!
 mkdir -p /tmp/depmap-workspace && cd /tmp/depmap-workspace
-./depdown update  # Creates database automatically
+./deplorado update  # Creates database automatically
 ```
 
 #### Manual Recovery (If Needed)
@@ -263,8 +265,8 @@ sqlite3 depmap_cache.db ".tables"
 
 ```bash
 # Clone repository
-git clone https://github.com/rainoffallingstar/depmap-downloader-rs.git
-cd depmap-downloader-rs
+git clone https://github.com/Cry-AML/deplorado.git
+cd deplorado
 
 # Development build
 cargo build
@@ -296,16 +298,16 @@ ls -la depmap_cache.db
 curl -I https://depmap.org/portal/api
 
 # View detailed logs
-./target/release/depdown --verbose update
+./target/release/deplorado --verbose update
 ```
 
 ### Performance Issues
 ```bash
 # Adjust worker count
-./target/release/depdown download --workers 2
+./target/release/deplorado download --workers 2
 
 # Clear cache and rebuild
-./target/release/depdown clear --all
+./target/release/deplorado clear --all
 ```
 
 ## 📚 Related Resources
@@ -313,6 +315,7 @@ curl -I https://depmap.org/portal/api
 - 🌐 [DepMap Official Website](https://depmap.org)
 - 📖 [DepMap API Documentation](https://depmap.org/portal/api)
 - 📊 [DepMap Data Page](https://depmap.org/portal/data_page)
+- 🤗 [DepMap Public 25Q3 mirror on Hugging Face](https://huggingface.co/datasets/fallingstar10/Depmap25Q3)
 - 🦀 [Rust Documentation](https://doc.rust-lang.org/)
 
 ## 🤝 Contributing

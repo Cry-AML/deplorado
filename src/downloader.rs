@@ -31,7 +31,7 @@ impl Downloader {
         std::fs::create_dir_all(&output_path)?;
 
         let client = reqwest::Client::builder()
-            .user_agent("depmap-downloader-rs/0.1.0")
+            .user_agent("deplorado/0.1.0")
             .build()?;
 
         Ok(Downloader {

@@ -1,10 +1,12 @@
-# 🧬 DepMap 下载工具 (Rust 版)
+# 🧬 DepLorado
 
-> ⚡ 高性能 Rust 工具，用于下载 DepMap 癌症依赖性图谱数据
+> ⚡ 一匹在 DepMap 里淘金的亡命之徒（desperado）下载器
+
+> 高性能 Rust 工具，用于挖掘 DepMap 癌症依赖性图谱数据
 
 [![Rust](https://img.shields.io/badge/rust-1.70+-orange.svg)](https://www.rust-lang.org)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/rainoffallingstar/depmap-downloader-rs.svg?style=social&label=Star)](https://github.com/rainoffallingstar/depmap-downloader-rs)
+[![GitHub stars](https://img.shields.io/github/stars/Cry-AML/deplorado.svg?style=social&label=Star)](https://github.com/Cry-AML/deplorado)
 
 ## 🎯 特性
 
@@ -25,14 +27,14 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/rainoffallingstar/depmap-downloader-rs.git
-cd depmap-downloader-rs
+git clone https://github.com/Cry-AML/deplorado.git
+cd deplorado
 
 # 构建项目
 cargo build --release
 
 # 运行程序
-./target/release/depdown --help
+./target/release/deplorado --help
 ```
 
 ### 🎮 开发模式（更快构建）
@@ -42,7 +44,7 @@ cargo build --release
 cargo build
 
 # 运行开发版本
-./target/debug/depdown --help
+./target/debug/deplorado --help
 ```
 
 ## 💻 使用指南
@@ -51,13 +53,13 @@ cargo build
 
 ```bash
 # 更新缓存（自动检查是否需要）
-./target/release/depdown update
+./target/release/deplorado update
 
 # 强制更新
-./target/release/depdown update --force
+./target/release/deplorado update --force
 
 # 更新特定数据类型
-./target/release/depdown update --data-type CRISPR --data-type Expression
+./target/release/deplorado update --data-type CRISPR --data-type Expression
 
 # 支持的数据类型
 # CRISPR, Expression, Mutations, CN, RNAi, Drug screen, Protein
@@ -67,41 +69,41 @@ cargo build
 
 ```bash
 # 查看所有发布版本 📦
-./target/release/depdown list releases
+./target/release/deplorado list releases
 
 # 详细版本信息
-./target/release/depdown list releases --detailed
+./target/release/deplorado list releases --detailed
 
 # 查看特定数据类型 🧬
-./target/release/depdown list datasets --data-type CRISPR
+./target/release/deplorado list datasets --data-type CRISPR
 
 # 查看版本文件详情 📁
-./target/release/depdown list files "DepMap Public 23Q4" --detailed
+./target/release/deplorado list files "DepMap Public 23Q4" --detailed
 ```
 
 ### ⬇️ 下载数据
 
 ```bash
 # 🆕 下载整个发布版本
-./target/release/depdown download release "DepMap Public 23Q4"
+./target/release/deplorado download release "DepMap Public 23Q4"
 
 # 🆕 下载特定数据类型
-./target/release/depdown download release "DepMap Public 23Q4" --data-type CRISPR
+./target/release/deplorado download release "DepMap Public 23Q4" --data-type CRISPR
 
 # 🆕 下载特定数据集
-./target/release/depdown download dataset "CRISPR (DepMap Public 25Q3+Score, Chronos)"
+./target/release/deplorado download dataset "CRISPR (DepMap Public 25Q3+Score, Chronos)"
 
 # ⚡ 高速下载（8个并发）
-./target/release/depdown download --workers 8 release "DepMap Public 25Q3"
+./target/release/deplorado download --workers 8 release "DepMap Public 25Q3"
 
 # 跳过已存在文件
-./target/release/depdown download --skip-existing
+./target/release/deplorado download --skip-existing
 
 # 验证文件完整性
-./target/release/depdown download --verify-checksum
+./target/release/deplorado download --verify-checksum
 
 # 自定义选项组合
-./target/release/depdown download \
+./target/release/deplorado download \
   --output ./my_data \
   --workers 8 \
   --skip-existing \
@@ -114,37 +116,37 @@ cargo build
 
 ```bash
 # 🆕 搜索基因（支持基因名和 Entrez ID）
-./target/release/depdown search TP53 -g
-./target/release/depdown search 7159 -g --limit 5
+./target/release/deplorado search TP53 -g
+./target/release/deplorado search 7159 -g --limit 5
 
 # 🔍 搜索细胞系
-./target/release/depdown search "A549" --cell-line
+./target/release/deplorado search "A549" --cell-line
 
 # 📊 搜索数据集
-./target/release/depdown search "CRISPR" --dataset
+./target/release/deplorado search "CRISPR" --dataset
 
 # 🎯 搜索所有类型（默认行为）
-./target/release/depdown search "BRCA1"
+./target/release/deplorado search "BRCA1"
 ```
 
 ### 📈 查看统计
 
 ```bash
 # 缓存统计信息
-./target/release/depdown stats
+./target/release/deplorado stats
 
 # 详细统计信息
-./target/release/depdown stats --detailed
+./target/release/deplorado stats --detailed
 ```
 
 ### 🗑️ 清理缓存
 
 ```bash
 # 清理所有缓存
-./target/release/depdown clear --all
+./target/release/deplorado clear --all
 
 # 清理特定数据类型缓存
-./target/release/depdown clear --data-type CRISPR
+./target/release/deplorado clear --data-type CRISPR
 ```
 
 ## 💡 实用示例
@@ -153,37 +155,37 @@ cargo build
 
 ```bash
 # 搜索肿瘤抑制基因 TP53
-./target/release/depdown search TP53 -g
+./target/release/deplorado search TP53 -g
 
 # 搜索癌基因 MYC
-./target/release/depdown search MYC -g --limit 10
+./target/release/deplorado search MYC -g --limit 10
 
 # 按 Entrez ID 精确查找
-./target/release/depdown search 672 -g  # BRCA1
+./target/release/deplorado search 672 -g  # BRCA1
 ```
 
 ### 📦 数据下载
 
 ```bash
 # 仅下载 CRISPR 数据（最新版本）
-./target/release/depdown download --skip-existing release "DepMap Public 25Q3" --data-type CRISPR
+./target/release/deplorado download --skip-existing release "DepMap Public 25Q3" --data-type CRISPR
 
 # 下载多种数据类型
-./target/release/depdown download --workers 8 release "DepMap Public 23Q4" --data-type Expression
-./target/release/depdown download --workers 8 release "DepMap Public 23Q4" --data-type Mutations
+./target/release/deplorado download --workers 8 release "DepMap Public 23Q4" --data-type Expression
+./target/release/deplorado download --workers 8 release "DepMap Public 23Q4" --data-type Mutations
 ```
 
 ### 🔍 探索式研究
 
 ```bash
 # 查看可用版本
-./target/release/depdown list releases
+./target/release/deplorado list releases
 
 # 浏览版本文件
-./target/release/depdown list files "DepMap Public 23Q4" --detailed
+./target/release/deplorado list files "DepMap Public 23Q4" --detailed
 
 # 选择性下载
-./target/release/depdown download --verify-checksum release "DepMap Public 23Q4"
+./target/release/deplorado download --verify-checksum release "DepMap Public 23Q4"
 ```
 
 ## 📊 支持的数据类型
@@ -220,7 +222,7 @@ cargo build
 ## 🏗️ 项目结构
 
 ```
-depmap-downloader-rs/
+deplorado/
 ├── 📁 src/                    # 源代码
 │   ├── main.rs                # 程序入口
 │   ├── cli.rs                 # 命令行定义
@@ -247,8 +249,8 @@ depmap-downloader-rs/
 
 ```bash
 # 克隆仓库
-git clone https://github.com/rainoffallingstar/depmap-downloader-rs.git
-cd depmap-downloader-rs
+git clone https://github.com/Cry-AML/deplorado.git
+cd deplorado
 
 # 开发构建
 cargo build
@@ -280,16 +282,16 @@ ls -la depmap_cache.db
 curl -I https://depmap.org/portal/api
 
 # 查看详细日志
-./target/release/depdown --verbose update
+./target/release/deplorado --verbose update
 ```
 
 ### 性能问题
 ```bash
 # 调整并发数
-./target/release/depdown download --workers 2
+./target/release/deplorado download --workers 2
 
 # 清理缓存重建
-./target/release/depdown clear --all
+./target/release/deplorado clear --all
 ```
 
 ## 📚 相关资源
@@ -297,6 +299,7 @@ curl -I https://depmap.org/portal/api
 - 🌐 [DepMap 官网](https://depmap.org)
 - 📖 [DepMap API 文档](https://depmap.org/portal/api)
 - 📊 [DepMap 数据页面](https://depmap.org/portal/data_page)
+- 🤗 [DepMap Public 25Q3 Hugging Face 镜像](https://huggingface.co/datasets/fallingstar10/Depmap25Q3)
 - 🦀 [Rust 文档](https://doc.rust-lang.org/)
 
 ## 🤝 贡献

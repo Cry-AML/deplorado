@@ -1,8 +1,8 @@
 use clap::{ArgAction, Parser, Subcommand};
 
 #[derive(Parser)]
-#[command(name = "depdown")]
-#[command(about = "A Rust-based DepMap data downloader")]
+#[command(name = "deplorado")]
+#[command(about = "DepLorado — a desperado downloader hunting for gold in DepMap")]
 #[command(version)]
 pub struct Cli {
     #[command(subcommand)]

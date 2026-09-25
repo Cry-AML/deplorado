@@ -102,7 +102,7 @@ impl CacheManager {
         Self::run_migrations(&db_pool).await?;
 
         let client = reqwest::Client::builder()
-            .user_agent("depmap-downloader-rs/0.1.0")
+            .user_agent("deplorado/0.1.0")
             .build()?;
 
         Ok(CacheManager {
