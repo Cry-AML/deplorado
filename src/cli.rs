@@ -174,8 +174,7 @@ pub enum DownloadCommands {
     ReconcileLocal {
         #[arg(
             long,
-            default_value = "depmap-compliment/depmap_data",
-            help = "Source directory with manually downloaded files"
+            help = "Source directory with manually downloaded files (required)"
         )]
         from: String,
 
