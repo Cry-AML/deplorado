@@ -318,6 +318,18 @@ curl -I https://depmap.org/portal/api
 - 🤗 [DepMap Public 25Q3 mirror on Hugging Face](https://huggingface.co/datasets/fallingstar10/Depmap25Q3)
 - 🦀 [Rust Documentation](https://doc.rust-lang.org/)
 
+## 🧰 Data acquisition helpers
+
+Beyond the Rust CLI, the repository keeps the scripts that were previously used
+to backfill DepMap files that the portal did not serve cleanly:
+
+- `scripts/download_from_api.py` — resolves fresh signed URLs from the DepMap
+  download index and verifies MD5 where available
+- `scripts/manual_download_retry.sh` — legacy retry helper with hard-coded,
+  now-expired signed URLs (kept for provenance)
+- `docs/MANUAL_DOWNLOAD_GUIDE.md` — download mechanics and known data issues
+- `docs/manual_download_checklist.csv` — original manual-download checklist
+
 ## 🤝 Contributing
 
 Issues and Pull Requests are welcome!
