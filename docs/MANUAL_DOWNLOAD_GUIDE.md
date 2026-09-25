@@ -86,15 +86,17 @@ pd.concat(frames, ignore_index=True).to_csv(
 
 可能由网络代理/防火墙导致，改用命令行 `curl`/`wget` 直接下载。
 
-### 5. CTRPv2.0_2015_ctd2_ExpandedDataset.zip 损坏
+### 5. CTRPv2.0_2015_ctd2_ExpandedDataset.zip（已修复）
 
 - 原始来源 `ctd2-data.nci.nih.gov/.../CTRPv2.0_2015_ctd2_ExpandedDataset.zip` 已下线，
   现在重定向到 NCI Index of Studies 前端页面。
-- 本地两份副本（主目录 25,338,290 B 与 compliment 6,016,217 B）**都缺少 ZIP 中央目录**
-  （`unzip`/`zipfile` 均判定不是有效压缩包），即下载时被截断。
-- 修复途径：从 Wayback 快照
-  `http://web.archive.org/web/20241211195811id_/https://ctd2-data.nci.nih.gov/Public/Broad/CTRPv2.0_2015_ctd2_ExpandedDataset/CTRPv2.0_2015_ctd2_ExpandedDataset.zip`
-  重新获取，或在 DepMap 门户手动下载后校验。
+- 旧本地副本（主目录 25,338,290 B 与 compliment 6,016,217 B）**都缺少 ZIP 中央目录**，
+  属下载截断，`unzip`/`zipfile` 均判定无效。
+- **修复方式**：从 Wayback 快照获取完整文件
+  `http://web.archive.org/web/20241211195811/https://ctd2-data.nci.nih.gov/Public/Broad/CTRPv2.0_2015_ctd2_ExpandedDataset/CTRPv2.0_2015_ctd2_ExpandedDataset.zip`
+  （注意：`id_` 原始端点当时返回 502，需使用普通快照 URL）。
+- 修复结果：`342,737,645` 字节，`md5=e764f6074a624d515d1b9d75e8b306e7`，
+  16 个成员，`testzip()` 通过。主目录与 compliment 两处及 Hugging Face 镜像均已替换。
 
 ---
 
@@ -105,7 +107,7 @@ pd.concat(frames, ignore_index=True).to_csv(
 | CCLE_miRNA_MIMAT.csv | 9.3 MB | CCLE 2019 |
 | CCLE_GlobalChromatinProfiling_20181130.csv | 477 KB | CCLE 2019 |
 | CCLE_RRBS_TSS1kb_20181022.txt.gz | 39 MB | CCLE 2019 |
-| CTRPv2.0_2015_ctd2_ExpandedDataset.zip | ~5.8 MB / 24 MB | CTRP CTD^2（损坏，待修） |
+| CTRPv2.0_2015_ctd2_ExpandedDataset.zip | 327 MB | CTRP CTD^2（2026-09 已修复） |
 | OmicsExpressionGeneSetEnrichment.csv | 24 MB | DepMap Public 24Q2 |
 | Repurposing_Public_24Q2_Extended_Primary_Data_Matrix.csv | 12 MB | PRISM Primary Repurposing 24Q2 |
 | secondary-screen-dose-response-curve-parameters.csv | 277 MB | PRISM Repurposing 19Q4 |
